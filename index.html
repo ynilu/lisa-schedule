@@ -120,6 +120,8 @@
          $(document).ready(function(){
              $("#generate").click(function(){
 
+                 $('#result').find('tbody').empty();
+
                  var $st_h = $("#st_h").val();
                  var $st_m = $("#st_m").val();
                  var $ed_h = $("#ed_h").val();
@@ -155,7 +157,7 @@
                  $lunch.minute(0);
 
                  var $dinner = moment();
-                 $dinner.hour(18);
+                 $dinner.hour(17);
                  $dinner.minute(0);
 
                  var $ed_time = moment();
@@ -181,7 +183,7 @@
                  {
                      $('#result').find('tbody:last').append('<tr> <td>' + $ct_time.format("HH:mm") + '</td> <td>午餐</td> </tr>');
                      $ct_time.add(1,'h');
-                     $hadDinner = true;
+                     $hadLunch = true;
                  }
                  else if($hadDinner == false && $ct_time.clone().add($skew,'m').isAfter($dinner))
                  {
