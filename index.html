@@ -201,7 +201,7 @@
                          continue;
                      }
 
-                     $('#result').find('tbody:last').append('<tr> <td>' + $ct_time.format("HH:mm") + '</td> <td>讀書' + $count + '</td> </tr>');
+                     $('#result').find('tbody:last').append('<tr> <td>' + $ct_time.format("HH:mm") + '</td> <td><input type="text" placeholder="讀書' + $count + '"></td> </tr>');
 
                      $count = $count + 1;
                      $ct_time.add(55,'m');
