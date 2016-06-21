@@ -167,7 +167,7 @@
                  var $hadLunch = false;
                  var $hadDinner = false;
 
-                 var $skew = 30;
+                 var $skew = 55;
 
                  if($ct_time.isAfter($lunch))
                  {
@@ -179,31 +179,13 @@
                      $hadDinner = true;
                  }
 
-                 if($hadLunch == false && $ct_time.clone().add($skew,'m').isAfter($lunch))
-                 {
-                     $('#result').find('tbody:last').append('<tr> <td>' + $ct_time.format("HH:mm") + '</td> <td>午餐</td> </tr>');
-                     $ct_time.add(1,'h');
-                     $hadLunch = true;
-                 }
-                 else if($hadDinner == false && $ct_time.clone().add($skew,'m').isAfter($dinner))
-                 {
-                     $('#result').find('tbody:last').append('<tr> <td>' + $ct_time.format("HH:mm") + '</td> <td>晚餐</td> </tr>');
-                     $ct_time.add(1,'h');
-                     $hadDinner = true;
-                 }
-
                  var $count = 1;
 
-                 while ($ct_time.isBefore($ed_time))
+                 while($ct_time.isBefore($ed_time))
                  {
-                     $('#result').find('tbody:last').append('<tr> <td>' + $ct_time.format("HH:mm") + '</td> <td>讀書' + $count + '</td> </tr>');
-
-                     $count = $count + 1;
-
-                     $ct_time.add(55,'m');
-
                      if($hadLunch == false && $ct_time.clone().add($skew,'m').isAfter($lunch))
                      {
+                         $ct_time = $lunch.clone();
                          $('#result').find('tbody:last').append('<tr> <td>' + $ct_time.format("HH:mm") + '</td> <td>午餐</td> </tr>');
                          $ct_time.add(1,'h');
                          $hadLunch = true;
@@ -212,13 +194,19 @@
 
                      if($hadDinner == false && $ct_time.clone().add($skew,'m').isAfter($dinner))
                      {
+                         $ct_time = $dinner.clone();
                          $('#result').find('tbody:last').append('<tr> <td>' + $ct_time.format("HH:mm") + '</td> <td>晚餐</td> </tr>');
                          $ct_time.add(1,'h');
                          $hadDinner = true;
                          continue;
                      }
 
-                     $('#result').find('tbody:last').append('<tr> <td>' + $ct_time.format("HH:mm") + '</td> <td>休息' + $count + '</td> </tr>');
+                     $('#result').find('tbody:last').append('<tr> <td>' + $ct_time.format("HH:mm") + '</td> <td>讀書' + $count + '</td> </tr>');
+
+                     $count = $count + 1;
+                     $ct_time.add(55,'m');
+
+                     $('#result').find('tbody:last').append('<tr> <td>' + $ct_time.format("HH:mm") + '</td> <td>休息</td> </tr>');
                      $ct_time.add(15,'m');
                  }
 
